@@ -1,0 +1,15 @@
+# Артефакты сборки
+build/
+*.o
+*.obj
+*.exe
+
+# Node (зависимостей нет, но на всякий случай)
+node_modules/
+npm-debug.log*
+
+# Служебное
+.DS_Store
+*.swp
+.vscode/
+.idea/

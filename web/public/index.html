@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050807">
+  <meta name="description" content="SNAKE — лёгкая терминальная игра на C++17. Играйте прямо в браузере.">
+  <title>SNAKE · C++17</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23050807%22/><path d=%22M8 22h8v-6h8V10%22 fill=%22none%22 stroke=%22%234ef08b%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/><circle cx=%2224%22 cy=%2210%22 r=%222.6%22 fill=%22%23ff6b6b%22/></svg>">
+  <link rel="stylesheet" href="vendor/xterm.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <div class="brand-text">
+        <h1>SNAKE</h1>
+        <p>терминальная аркада на C++17</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge">C++17</span>
+      <span class="badge">без зависимостей</span>
+      <span class="badge status connecting" id="statusBadge">
+        <i class="dot" aria-hidden="true"></i>
+        <span id="statusText">подключение…</span>
+      </span>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="window" aria-label="Терминал с игрой">
+      <div class="window-bar">
+        <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="window-title">snake — build/snake-ui</div>
+        <div class="window-meta" id="screenMeta">—</div>
+      </div>
+
+      <div class="window-body">
+        <div class="terminal" id="terminal" aria-label="Игровое поле"></div>
+        <div class="overlay" id="overlay" hidden>
+          <div class="overlay-card">
+            <div class="spinner" id="overlaySpinner" aria-hidden="true"></div>
+            <p class="overlay-title" id="overlayTitle">Подключаемся…</p>
+            <p class="overlay-text" id="overlayText">Запускаем процесс игры</p>
+            <button class="btn" id="overlayBtn" type="button" hidden>Сыграть</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="window-foot">
+        <span>TERM=xterm-256color</span>
+        <span class="sep">·</span>
+        <span>UTF-8</span>
+        <span class="sep">·</span>
+        <span>WebSocket</span>
+        <span class="grow"></span>
+        <span id="sizeInfo">—</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Управление">
+      <div class="legend">
+        <div class="legend-row">
+          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+          <span>движение</span>
+          <span class="legend-divider"></span>
+          <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd>
+          <span>или стрелки</span>
+        </div>
+        <div class="legend-row muted">
+          <kbd>P</kbd><span>пауза</span>
+          <kbd>R</kbd><span>заново</span>
+          <kbd>Q</kbd><span>выход</span>
+          <span class="legend-divider"></span>
+          <span>русская раскладка тоже работает</span>
+        </div>
+      </div>
+
+      <div class="dpad" id="dpad" aria-label="Сенсорное управление">
+        <button type="button" data-cmd="up" class="up" aria-label="Вверх">▲</button>
+        <button type="button" data-cmd="left" class="left" aria-label="Влево">◀</button>
+        <button type="button" data-cmd="down" class="down" aria-label="Вниз">▼</button>
+        <button type="button" data-cmd="right" class="right" aria-label="Вправо">▶</button>
+        <button type="button" data-cmd="enter" class="start" aria-label="Старт или продолжить">ENTER — старт</button>
+        <button type="button" data-cmd="pause" class="util" aria-label="Пауза">пауза</button>
+        <button type="button" data-cmd="restart" class="util" aria-label="Заново">заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <span>Змейка живёт в C++ и рисуется ANSI-последовательностями. Браузер — просто терминал.</span>
+    <span><a href="https://github.com/FsbAidol/Game-in-C-" target="_blank" rel="noreferrer">исходники на GitHub</a></span>
+  </footer>
+
+  <script src="vendor/xterm.js"></script>
+  <script src="vendor/addon-fit.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
